@@ -126,45 +126,16 @@ function inicializarSlider() {
 
 
 
-/**filtrar tipo de casas*/
 
-function filtrar_tipo() {
-  $.ajax({
-    url: "./data-1.json",
-    success: function(datos) {
-      var tipo = $('#selectTipo option:selected').text();
-      console.log(tipo);
-      var mostrar = "";
-      for (var i = 0; i < datos.length; i++) {
-        if (tipo == datos[i].Tipo) {
-          console.log(datos[i].Tipo);
-          mostrar += "<div class='row casa'>" +
-            "<img class='col 4' src='img/home.jpg' />" +
-            "<div class='col 1'>" +
-            "<p class='Direccion '>Direccion : " + datos[i].Direccion + "</p>" +
-            "<p class='Ciudad'>Ciudad :" + datos[i].Ciudad + "</p>" +
-            "<p class='Telefono'>Telefono : " + datos[i].Telefono + "</p>" +
-            "<p class='Codigo_Postal'>Codigo Postal : " + datos[i].Codigo_Postal + "</p>" +
-            "<p class='Tipo'>Tipo : " + datos[i].Tipo + "</p>" +
-            "<p class='Precio'>Precio : " + datos[i].Precio + "</p>" +
-            "</div>" +
-            "</div>"
-        }
-      }
-      $("#uno").html(mostrar);
-      $('select').material_select();
-    }
-  });
-}
 
 
 /*
 */
 
-function filtro(){
+function filtro() {
   $.ajax({
     url: "./data-1.json",
-    success: function(datos){
+    success: function(datos) {
       var tipo = $('#selectTipo option:selected').text();
       var ciudad = $('#selectCiudad option:selected').text();
       var precio_rango = $('#rangoPrecio').val();
@@ -172,8 +143,9 @@ function filtro(){
       var max = precio_rango.substr(5, 7);
       var mostrar = "";
       for (var i = 0; i < datos.length; i++) {
-        var precio =datos[i].Precio.replace(',','');
-        if (tipo == datos[i].Tipo && ciudad == datos[i].Ciudad && ( min <= precio.substring(1) && max >= precio.substring(1)) ) {
+        var precio = datos[i].Precio.replace(',', '');
+        if ((tipo == datos[i].Tipo) && (ciudad == datos[i].Ciudad) && (min <= precio.substring(1) && max >= precio.substring(1))) {
+          console.log('1');
           mostrar += "<div class='row casa'>" +
             "<img class='col 4' src='img/home.jpg' />" +
             "<div class='col 1'>" +
@@ -186,6 +158,36 @@ function filtro(){
             "</div>" +
             "</div>"
         }
+
+        if (tipo == datos[i].Tipo && (min <= precio.substring(1) && max >= precio.substring(1))) {
+          console.log('2');
+          mostrar += "<div class='row casa'>" +
+            "<img class='col 4' src='img/home.jpg' />" +
+            "<div class='col 1'>" +
+            "<p class='Direccion '>Direccion : " + datos[i].Direccion + "</p>" +
+            "<p class='Ciudad'>Ciudad :" + datos[i].Ciudad + "</p>" +
+            "<p class='Telefono'>Telefono : " + datos[i].Telefono + "</p>" +
+            "<p class='Codigo_Postal'>Codigo Postal : " + datos[i].Codigo_Postal + "</p>" +
+            "<p class='Tipo'>Tipo : " + datos[i].Tipo + "</p>" +
+            "<p class='Precio'>Precio : " + datos[i].Precio + "</p>" +
+            "</div>" +
+            "</div>"
+        }
+        if (ciudad == datos[i].Ciudad && min <= precio.substring(1) && max >= precio.substring(1)) {
+          console.log('3');
+          mostrar += "<div class='row casa'>" +
+            "<img class='col 4' src='img/home.jpg' />" +
+            "<div class='col 1'>" +
+            "<p class='Direccion '>Direccion : " + datos[i].Direccion + "</p>" +
+            "<p class='Ciudad'>Ciudad :" + datos[i].Ciudad + "</p>" +
+            "<p class='Telefono'>Telefono : " + datos[i].Telefono + "</p>" +
+            "<p class='Codigo_Postal'>Codigo Postal : " + datos[i].Codigo_Postal + "</p>" +
+            "<p class='Tipo'>Tipo : " + datos[i].Tipo + "</p>" +
+            "<p class='Precio'>Precio : " + datos[i].Precio + "</p>" +
+            "</div>" +
+            "</div>"
+        }
+
       }
       $("#uno").html(mostrar);
       $('select').material_select();
@@ -195,7 +197,7 @@ function filtro(){
 
 
 $("#submitButton").click(function() {
-filtro();
+  filtro();
 });
 
 /*playVideoOnScroll();*/
