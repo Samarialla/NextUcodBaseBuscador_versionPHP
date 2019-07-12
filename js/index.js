@@ -144,22 +144,9 @@ function filtro() {
       var mostrar = "";
       for (var i = 0; i < datos.length; i++) {
         var precio = datos[i].Precio.replace(',', '');
-        if ((tipo == datos[i].Tipo) && (ciudad == datos[i].Ciudad) && (min <= precio.substring(1) && max >= precio.substring(1))) {
-          console.log('1');
-          mostrar += "<div class='row casa'>" +
-            "<img class='col 4' src='img/home.jpg' />" +
-            "<div class='col 1'>" +
-            "<p class='Direccion '>Direccion : " + datos[i].Direccion + "</p>" +
-            "<p class='Ciudad'>Ciudad :" + datos[i].Ciudad + "</p>" +
-            "<p class='Telefono'>Telefono : " + datos[i].Telefono + "</p>" +
-            "<p class='Codigo_Postal'>Codigo Postal : " + datos[i].Codigo_Postal + "</p>" +
-            "<p class='Tipo'>Tipo : " + datos[i].Tipo + "</p>" +
-            "<p class='Precio'>Precio : " + datos[i].Precio + "</p>" +
-            "</div>" +
-            "</div>"
 
-          if (ciudad == datos[i].Ciudad && (min <= precio.substring(1) && max >= precio.substring(1))) {
-            console.log('2');
+        if (ciudad != "Elige una ciudad" && tipo != "Elige un tipo") {
+          if ((ciudad == datos[i].Ciudad) && (tipo == datos[i].Tipo) && (min <= precio.substring(1) && max >= precio.substring(1))) {
             mostrar += "<div class='row casa'>" +
               "<img class='col 4' src='img/home.jpg' />" +
               "<div class='col 1'>" +
@@ -171,29 +158,40 @@ function filtro() {
               "<p class='Precio'>Precio : " + datos[i].Precio + "</p>" +
               "</div>" +
               "</div>"
-
-            if ((tipo == datos[i].Tipo) && (ciudad == datos[i].Ciudad) && (min <= precio.substring(1) && max >= precio.substring(1))) {
-              console.log('4');
-              mostrar += "<div class='row casa'>" +
-                "<img class='col 4' src='img/home.jpg' />" +
-                "<div class='col 1'>" +
-                "<p class='Direccion '>Direccion : " + datos[i].Direccion + "</p>" +
-                "<p class='Ciudad'>Ciudad :" + datos[i].Ciudad + "</p>" +
-                "<p class='Telefono'>Telefono : " + datos[i].Telefono + "</p>" +
-                "<p class='Codigo_Postal'>Codigo Postal : " + datos[i].Codigo_Postal + "</p>" +
-                "<p class='Tipo'>Tipo : " + datos[i].Tipo + "</p>" +
-                "<p class='Precio'>Precio : " + datos[i].Precio + "</p>" +
-                "</div>" +
-                "</div>"
-
-            }
-
+          }
+        } else {
+          if ((ciudad == datos[i].Ciudad) && (min <= precio.substring(1) && max >= precio.substring(1))) {
+            mostrar += "<div class='row casa'>" +
+              "<img class='col 4' src='img/home.jpg' />" +
+              "<div class='col 1'>" +
+              "<p class='Direccion '>Direccion : " + datos[i].Direccion + "</p>" +
+              "<p class='Ciudad'>Ciudad :" + datos[i].Ciudad + "</p>" +
+              "<p class='Telefono'>Telefono : " + datos[i].Telefono + "</p>" +
+              "<p class='Codigo_Postal'>Codigo Postal : " + datos[i].Codigo_Postal + "</p>" +
+              "<p class='Tipo'>Tipo : " + datos[i].Tipo + "</p>" +
+              "<p class='Precio'>Precio : " + datos[i].Precio + "</p>" +
+              "</div>" +
+              "</div>"
           }
 
+          if ((tipo == datos[i].Tipo) && (min <= precio.substring(1) && max >= precio.substring(1))) {
+            console.log("Tnro");
+            mostrar += "<div class='row casa'>" +
+              "<img class='col 4' src='img/home.jpg' />" +
+              "<div class='col 1'>" +
+              "<p class='Direccion '>Direccion : " + datos[i].Direccion + "</p>" +
+              "<p class='Ciudad'>Ciudad :" + datos[i].Ciudad + "</p>" +
+              "<p class='Telefono'>Telefono : " + datos[i].Telefono + "</p>" +
+              "<p class='Codigo_Postal'>Codigo Postal : " + datos[i].Codigo_Postal + "</p>" +
+              "<p class='Tipo'>Tipo : " + datos[i].Tipo + "</p>" +
+              "<p class='Precio'>Precio : " + datos[i].Precio + "</p>" +
+              "</div>" +
+              "</div>"
+          }
         }
 
-      }
 
+      }
       $("#uno").html(mostrar);
       $('select').material_select();
     }
